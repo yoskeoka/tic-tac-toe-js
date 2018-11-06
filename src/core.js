@@ -62,7 +62,40 @@ function convertString(board) {
     return result;
 }
 
+/**
+ * boardのデータを渡して終了しているか判定
+ * @param {Array<number>} board
+ * @returns {boolean}
+ */
+function isEnd(board) {
+    // 行のチェック
+    if (Math.abs(sumAt(board, 0, 1, 2)) === 3) return true;
+    if (Math.abs(sumAt(board, 3, 4, 5)) === 3) return true;
+    if (Math.abs(sumAt(board, 6, 7, 8)) === 3) return true;
+    // 列のチェック
+    if (Math.abs(sumAt(board, 0, 3, 6)) === 3) return true;
+    if (Math.abs(sumAt(board, 1, 4, 7)) === 3) return true;
+    if (Math.abs(sumAt(board, 2, 5, 8)) === 3) return true;
+    // 斜めのチェック
+    if (Math.abs(sumAt(board, 0, 4, 8)) === 3) return true;
+    if (Math.abs(sumAt(board, 2, 4, 6)) === 3) return true;
+    // 引き分けのチェック
+    return board.every(cell => cell !== 0);
+}
+
+/**
+ * 配列の指定indexの値を足す
+ * @param {Array<number>} board
+ * @param  {...number} indexes
+ * @returns {number}
+ */
+function sumAt(board, ...indexes) {
+    return indexes.reduce((sum, index) => sum + board[index], 0);
+}
+
 module.exports = {
     parse: parse,
     convertString: convertString,
+    isEnd: isEnd,
+    sumAt: sumAt,
 };

@@ -39,4 +39,25 @@ describe('Core logic', () => {
             expect(core.convertString([1, 1, 1, -1, 0, -1, 0, -1, 0])).toEqual('ooox-x-x-');
         });
     });
+
+    describe('isEnd function', () => {
+        test('マルの勝ち', () => {
+            expect(core.isEnd([1, 1, 1, -1, 0, -1, 0, -1, 0])).toBe(true);
+        });
+        test('バツの勝ち', () => {
+            expect(core.isEnd([-1, 1, 0, 1, -1, 0, 1, 0, -1])).toBe(true);
+        });
+        test('引き分け', () => {
+            expect(core.isEnd([1, 1, -1, -1, -1, 1, 1, -1, 1])).toBe(true);
+        });
+    });
+
+    describe('sumAt function', () => {
+        test('配列の指定indexの値を足します', () => {
+            expect(core.sumAt([1, 2, 3, 4, 5], 0, 2)).toBe(4);
+        });
+        test('配列の指定indexの値を足します', () => {
+            expect(core.sumAt([1, 2, 3, 4, 5, 6], 1, 3, 4)).toBe(11);
+        });
+    });
 });
