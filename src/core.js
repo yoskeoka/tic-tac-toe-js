@@ -93,9 +93,17 @@ function sumAt(board, ...indexes) {
     return indexes.reduce((sum, index) => sum + board[index], 0);
 }
 
+function put(board, index) {
+    const b = Array.from(board);
+    const emptyCellCount = board.filter(cell => cell === 0).length;
+    b[index] = emptyCellCount % 2 ? 1 : -1;
+    return b;
+}
+
 module.exports = {
     parse: parse,
     convertString: convertString,
     isEnd: isEnd,
     sumAt: sumAt,
+    put: put,
 };

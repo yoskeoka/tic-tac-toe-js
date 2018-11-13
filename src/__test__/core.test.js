@@ -1,6 +1,7 @@
 const core = require('../core');
 
 describe('Core logic', () => {
+    const emptyBoard = [0, 0, 0, 0, 0, 0, 0, 0, 0];
     describe('parse function', () => {
         test('--------- 空のボードになる', () => {
             expect(core.parse('---------')).toEqual([0, 0, 0, 0, 0, 0, 0, 0, 0]);
@@ -58,6 +59,17 @@ describe('Core logic', () => {
         });
         test('配列の指定indexの値を足します', () => {
             expect(core.sumAt([1, 2, 3, 4, 5, 6], 1, 3, 4)).toBe(11);
+        });
+    });
+
+    describe('put function', () => {
+        test('まっさらな状態の時にど真ん中にマルがおける', () => {
+            expect(core.put(emptyBoard, 4)).toEqual(core.parse('----o----'));
+        });
+        test('次はバツ', () => {
+            const got = core.put(core.parse('----o----'), 0);
+            const want = core.parse('x---o----');
+            expect(got).toEqual(want);
         });
     });
 });
