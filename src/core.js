@@ -9,6 +9,10 @@
 
 */
 
+const maru = 1;
+const batu = -1;
+const kara = 0;
+
 /**
  * 文字列をtic-tac-toeの内部データに変換
  * srt の例  'x--oox---'
@@ -23,11 +27,11 @@ function parse(str) {
     }
     const result = str.split('').map(s => {
         if (s === 'x') {
-            return -1;
+            return batu;
         } else if (s === 'o') {
-            return 1;
+            return maru;
         } else if (s === '-') {
-            return 0;
+            return kara;
         }
         throw new Error('xかoか-入れて');
     });
@@ -49,11 +53,11 @@ function convertString(board) {
     }
     const result = board
         .map(n => {
-            if (n === 1) {
+            if (n === maru) {
                 return 'o';
-            } else if (n === -1) {
+            } else if (n === batu) {
                 return 'x';
-            } else if (n === 0) {
+            } else if (n === kara) {
                 return '-';
             }
         })
@@ -80,7 +84,7 @@ function isEnd(board) {
     if (Math.abs(sumAt(board, 0, 4, 8)) === 3) return true;
     if (Math.abs(sumAt(board, 2, 4, 6)) === 3) return true;
     // 引き分けのチェック
-    return board.every(cell => cell !== 0);
+    return board.every(cell => cell !== kara);
 }
 
 /**
@@ -90,17 +94,17 @@ function isEnd(board) {
  * @returns {number}
  */
 function sumAt(board, ...indexes) {
-    return indexes.reduce((sum, index) => sum + board[index], 0);
+    return indexes.reduce((sum, index) => sum + board[index], kara);
 }
 
 function put(board, index) {
     // 配列をコピー
     const b = Array.from(board);
-    const emptyCellCount = board.filter(cell => cell === 0).length;
-    if (b[index] !== 0) {
+    const emptyCellCount = board.filter(cell => cell === kara).length;
+    if (b[index] !== kara) {
         throw new Error('すでに置かれています');
     }
-    b[index] = emptyCellCount % 2 ? 1 : -1;
+    b[index] = emptyCellCount % 2 ? maru : batu;
     return b;
 }
 
