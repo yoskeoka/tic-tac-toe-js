@@ -76,4 +76,10 @@ describe('Core logic', () => {
             expect(() => core.put(真ん中に置かれている, 4)).toThrowError();
         });
     });
+    //TODO: テストを実装する。
+    describe('getNextTurn function', () => {
+        test('ターンが切り替わる', () => {
+            expect(core.put(emptyBoard, 4)).toEqual(core.parse('----o----'));
+        });
+    });
 });

@@ -108,6 +108,21 @@ function put(board, index) {
     return b;
 }
 
+/**
+ * 次の手番を返す
+ * @param {Array<number>} board
+ * @returns {number} 次の手番
+ */
+function getNextTurn(board) {
+    const emptyCellCount = board.filter(cell => cell === kara).length;
+
+    if (emptyCellCount % 2 === 0) {
+        return batu;
+    } else {
+        return maru;
+    }
+}
+
 module.exports = {
     parse: parse,
     convertString: convertString,
