@@ -71,5 +71,9 @@ describe('Core logic', () => {
             const want = core.parse('x---o----');
             expect(got).toEqual(want);
         });
+        test('真ん中にすでに存在していたら、置けない', () => {
+            const 真ん中に置かれている = core.parse('----o----');
+            expect(() => core.put(真ん中に置かれている, 4)).toThrowError();
+        });
     });
 });

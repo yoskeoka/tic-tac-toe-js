@@ -94,8 +94,12 @@ function sumAt(board, ...indexes) {
 }
 
 function put(board, index) {
+    // 配列をコピー
     const b = Array.from(board);
     const emptyCellCount = board.filter(cell => cell === 0).length;
+    if (b[index] !== 0) {
+        throw new Error('すでに置かれています');
+    }
     b[index] = emptyCellCount % 2 ? 1 : -1;
     return b;
 }
