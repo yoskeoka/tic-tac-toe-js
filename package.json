@@ -1,14 +1,19 @@
 {
-  "name": "tic-tac-toe-js",
-  "version": "1.0.0",
-  "main": "index.js",
-  "repository": "https://github.com/yoskeoka/tic-tac-toe-js",
-  "author": "yoskeoka <y.okamoto@gemcook.com>",
-  "license": "MIT",
-  "scripts": {
-    "test": "jest"
-  },
-  "devDependencies": {
-    "jest": "^23.6.0"
-  }
+    "name": "tic-tac-toe-js",
+    "version": "1.0.0",
+    "bin": {
+        "ox": "bin/ox.js"
+    },
+    "publishConfig": {
+        "access": "public"
+    },
+    "repository": "https://github.com/yoskeoka/tic-tac-toe-js",
+    "author": "yoskeoka <y.okamoto@gemcook.com>",
+    "license": "MIT",
+    "scripts": {
+        "test": "jest"
+    },
+    "devDependencies": {
+        "jest": "^23.6.0"
+    }
 }
