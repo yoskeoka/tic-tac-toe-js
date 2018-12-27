@@ -4,6 +4,12 @@
 
 まるばつゲーム
 
+## インストール
+
+```sh
+npm i -g @yoskeoka/tic-tac-toe-js
+```
+
 ## 設計図
 
 ![architecture](images/architecture.png)
