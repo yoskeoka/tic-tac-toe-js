@@ -130,50 +130,30 @@ function getNextTurn(board) {
  * @returns {string} 勝者
  */
 function getWinner(board) {
-    // 行のチェック
-    if (sumAt(board, 0, 1, 2) === 3) {
-        return 'o';
-    } else if (sumAt(board, 0, 1, 2) === -3) {
-        return 'x';
+    if (!isEnd(board)) {
+        throw new Error('まだ終わってない');
     }
-    if (sumAt(board, 3, 4, 5) === 3) {
-        return 'o';
-    } else if (sumAt(board, 3, 4, 5) === -3) {
-        return 'x';
+    const checkPatterns = [
+        // 行のチェック
+        [0, 1, 2],
+        [3, 4, 5],
+        [6, 7, 8],
+        // 列のチェック
+        [0, 3, 6],
+        [1, 4, 7],
+        [2, 5, 8],
+        // 斜めのチェック
+        [0, 4, 8],
+        [2, 4, 6],
+    ];
+    for (const pattern of checkPatterns) {
+        if (sumAt(board, ...pattern) === 3) {
+            return 'o';
+        } else if (sumAt(board, ...pattern) === -3) {
+            return 'x';
+        }
     }
-    if (sumAt(board, 6, 7, 8) === 3) {
-        return 'o';
-    } else if (sumAt(board, 6, 7, 8) === -3) {
-        return 'x';
-    }
-    // 列のチェック
-    if (sumAt(board, 0, 3, 6) === 3) {
-        return 'o';
-    } else if (sumAt(board, 0, 3, 6) === -3) {
-        return 'x';
-    }
-    if (sumAt(board, 1, 4, 7) === 3) {
-        return 'o';
-    } else if (sumAt(board, 1, 4, 7) === -3) {
-        return 'x';
-    }
-    if (sumAt(board, 2, 5, 8) === 3) {
-        return 'o';
-    } else if (sumAt(board, 2, 5, 8) === -3) {
-        return 'x';
-    }
-    if (sumAt(board, 0, 4, 8) === 3) {
-        return 'o';
-    } else if (sumAt(board, 0, 4, 8) === -3) {
-        return 'x';
-    }
-    // 斜めのチェック
-    if (sumAt(board, 2, 4, 6) === 3) {
-        return 'o';
-    } else if (sumAt(board, 2, 4, 6) === -3) {
-        return 'x';
-    }
-    // 引き分けのチェック
+    // 勝者が存在しない場合引き分け
     return '-';
 }
 
