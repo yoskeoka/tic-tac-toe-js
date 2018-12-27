@@ -1,6 +1,6 @@
 {
-    "name": "tic-tac-toe-js",
-    "version": "1.0.2",
+    "name": "@yoskeoka/tic-tac-toe-js",
+    "version": "1.0.3",
     "bin": {
         "ox": "bin/ox.js"
     },
