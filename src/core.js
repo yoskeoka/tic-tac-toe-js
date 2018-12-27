@@ -123,10 +123,66 @@ function getNextTurn(board) {
     }
 }
 
+/**
+ * 勝者を文字列で返す
+ * 必ずisEnd後に使用する
+ * @param {Array<number>} board
+ * @returns {string} 勝者
+ */
+function getWinner(board) {
+    // 行のチェック
+    if (sumAt(board, 0, 1, 2) === 3) {
+        return 'o';
+    } else if (sumAt(board, 0, 1, 2) === -3) {
+        return 'x';
+    }
+    if (sumAt(board, 3, 4, 5) === 3) {
+        return 'o';
+    } else if (sumAt(board, 3, 4, 5) === -3) {
+        return 'x';
+    }
+    if (sumAt(board, 6, 7, 8) === 3) {
+        return 'o';
+    } else if (sumAt(board, 6, 7, 8) === -3) {
+        return 'x';
+    }
+    // 列のチェック
+    if (sumAt(board, 0, 3, 6) === 3) {
+        return 'o';
+    } else if (sumAt(board, 0, 3, 6) === -3) {
+        return 'x';
+    }
+    if (sumAt(board, 1, 4, 7) === 3) {
+        return 'o';
+    } else if (sumAt(board, 1, 4, 7) === -3) {
+        return 'x';
+    }
+    if (sumAt(board, 2, 5, 8) === 3) {
+        return 'o';
+    } else if (sumAt(board, 2, 5, 8) === -3) {
+        return 'x';
+    }
+    if (sumAt(board, 0, 4, 8) === 3) {
+        return 'o';
+    } else if (sumAt(board, 0, 4, 8) === -3) {
+        return 'x';
+    }
+    // 斜めのチェック
+    if (sumAt(board, 2, 4, 6) === 3) {
+        return 'o';
+    } else if (sumAt(board, 2, 4, 6) === -3) {
+        return 'x';
+    }
+    // 引き分けのチェック
+    return '-';
+}
+
 module.exports = {
     parse: parse,
     convertString: convertString,
     isEnd: isEnd,
     sumAt: sumAt,
     put: put,
+    getNextTurn: getNextTurn,
+    getWinner: getWinner,
 };

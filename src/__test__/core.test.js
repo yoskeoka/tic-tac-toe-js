@@ -27,6 +27,9 @@ describe('Core logic', () => {
         test('-- 少なければ例外発生', () => {
             expect(() => core.parse('--')).toThrowError();
         });
+        test('---------- 多ければ例外発生', () => {
+            expect(() => core.parse('----------')).toThrowError();
+        });
     });
 
     describe('convertString function', () => {
@@ -76,10 +79,22 @@ describe('Core logic', () => {
             expect(() => core.put(真ん中に置かれている, 4)).toThrowError();
         });
     });
-    //TODO: テストを実装する。
+
     describe('getNextTurn function', () => {
-        test('ターンが切り替わる', () => {
-            expect(core.put(emptyBoard, 4)).toEqual(core.parse('----o----'));
+        test('最初の手番はマル', () => {
+            expect(core.getNextTurn(emptyBoard)).toEqual(1);
+        });
+        test('次の手番はバツ', () => {
+            expect(core.getNextTurn(core.parse('----o----'))).toEqual(-1);
+        });
+    });
+
+    describe('getWinner function', () => {
+        test('マルが勝ちならマルを文字列で返す', () => {
+            expect(core.getWinner([1, 1, 1, -1, 0, -1, 0, -1, 0])).toBe('o');
+        });
+        test('バツが勝ちならバツを文字列で返す', () => {
+            expect(core.getWinner([-1, 1, 0, 1, -1, 0, 1, 0, -1])).toBe('x');
         });
     });
 });
